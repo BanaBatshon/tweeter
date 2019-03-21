@@ -1,6 +1,6 @@
-
 $(document).ready(function () {
   $(".error").hide();
+  loadTweets();
   // $('.new-tweet').hide();
 
   function createTweetElement(tweetObj) {
@@ -46,58 +46,47 @@ $(document).ready(function () {
     return (tweet);
   }
 
-
-function renderTweets(tweets) {
-  for ( const tweet of tweets) {
-    let newTweet = createTweetElement(tweet);
-    $('#all-tweets').prepend(newTweet);
-  }
-}
-
-function loadTweets (){
-  $.ajax({url: '/tweets',method: 'GET',success: function(data){
-    renderTweets(data);
-    },
-    error: function(err){
-      console.log("there was an error getting data");
+  function renderTweets(tweets) {
+    for ( const tweet of tweets) {
+      let newTweet = createTweetElement(tweet);
+      $('#all-tweets').prepend(newTweet);
     }
-  });
-}
+  }
 
-let $button = $('.compose');
-$button.click(function(event) {
-  event.preventDefault();
-  $('.new-tweet').slideToggle()('fast');
-})
-
-let $form = $('#newTweetForm');
-$form.submit(function (event) {
-  event.preventDefault();
-  if ($("textArea").val().length === 0){
-    $(".error").text('Error: Please type something to tweet');
-    $(".error").slideDown('fast');
-  } else if ($("textArea").val().length > 140 ) {
-    $(".error").text('Error: Please type something to tweet');
-    $(".error").slideDown('fast');
-  } else {
-    $(".error").hide();
-    let $formInput = $(this).serialize();
-    $.ajax({ method: 'POST', url: "/tweets", data: $formInput})
-    .done(function () {
-      loadTweets();
+  function loadTweets (){
+    $.ajax({url: '/tweets',method: 'GET',success: function(data){
+      renderTweets(data);
+      },
+      error: function(err){
+      console.log("there was an error getting data");
+      }
     });
   }
+
+  let $button = $('.compose');
+  $button.click(function(event) {
+    event.preventDefault();
+    $('.new-tweet').slideToggle()('fast');
+    $('textArea').focus();
+  })
+
+  let $form = $('#newTweetForm');
+  $form.submit(function (event) {
+    event.preventDefault();
+    if ($("textArea").val().length === 0){
+      $(".error").text('Error: Please type something to tweet');
+      $(".error").slideDown('fast');
+    } else if ($("textArea").val().length > 140 ) {
+      $(".error").text('Error: Please type something to tweet');
+      $(".error").slideDown('fast');
+    } else {
+      $(".error").hide();
+      let $formInput = $(this).serialize();
+      $.ajax({ method: 'POST', url: "/tweets", data: $formInput})
+      .done(function (res) {
+        $("all-tweets").empty();
+        loadTweets();
+      });
+    }
+  })
 })
-
-
-})
-
-
-
-
-    // note for using ajax later: $.ajax("http://").done((response) => {
-    // response.tweets.forEach(renderTweet)
-    // })
-    //$
-
-
