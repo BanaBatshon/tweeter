@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+  $(".error").hide();
+  // $('.new-tweet').hide();
 
   function createTweetElement(tweetObj) {
     //gets the tweet properties from the passed object
@@ -54,7 +56,7 @@ function renderTweets(tweets) {
 
 function loadTweets (){
   $.ajax({url: '/tweets',method: 'GET',success: function(data){
-      renderTweets(data);
+    renderTweets(data);
     },
     error: function(err){
       console.log("there was an error getting data");
@@ -62,14 +64,23 @@ function loadTweets (){
   });
 }
 
+let $button = $('.compose');
+$button.click(function(event) {
+  event.preventDefault();
+  $('.new-tweet').slideToggle()('fast');
+})
+
 let $form = $('#newTweetForm');
 $form.submit(function (event) {
   event.preventDefault();
   if ($("textArea").val().length === 0){
-    alert('Please type something to tweet');
+    $(".error").text('Error: Please type something to tweet');
+    $(".error").slideDown('fast');
   } else if ($("textArea").val().length > 140 ) {
-    alert('The length of your tweet exceeds the character limit')
+    $(".error").text('Error: Please type something to tweet');
+    $(".error").slideDown('fast');
   } else {
+    $(".error").hide();
     let $formInput = $(this).serialize();
     $.ajax({ method: 'POST', url: "/tweets", data: $formInput})
     .done(function () {
@@ -77,7 +88,6 @@ $form.submit(function (event) {
     });
   }
 })
-
 
 
 })
