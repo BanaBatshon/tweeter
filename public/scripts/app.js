@@ -83,8 +83,10 @@ $(document).ready(function () {
       $(".error").hide();
       let $formInput = $(this).serialize();
       $.ajax({ method: 'POST', url: "/tweets", data: $formInput})
-      .done(function (res) {
+      .done(function () {
         $("all-tweets").empty();
+        $("textarea").val('');
+        $('.counter').text(140);
         loadTweets();
       });
     }
