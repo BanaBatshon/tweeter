@@ -9,8 +9,6 @@ $(document).ready(function() {
       } 
       else if (counter === 0) {
         $(".counter").css('color', 'orange');
-      } else {
-        $(".counter").css('color', 'black');
       }
   })
 });
