@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(".error").hide();
   loadTweets();
   // $('.new-tweet').hide();
-
+    
   function createTweetElement(tweetObj) {
     // checks what time to post to the webpage
     let findTime = function () {
@@ -24,14 +24,13 @@ $(document).ready(function () {
       }
       return time += "posted: " + hours + " hours ago"
     }
-
+    
     //gets the tweet properties from the passed object
     let avatar = $('<img>').attr('src',tweetObj["user"]["avatars"]["small"]);
     let name = tweetObj["user"]["name"];
     let handle = tweetObj["user"]["handle"];
     let content = tweetObj["content"]["text"];
-    // let postDate = new Date((tweetObj["created_at"] * 1000));
-    let postDate = new Date(( 1544443932 * 1000));
+    let postDate = new Date((tweetObj["created_at"]));
     let currentDate = new Date();
     let years = currentDate.getFullYear() - postDate.getFullYear();
     let months = (currentDate.getMonth() + 1) - (postDate.getMonth() + 1);
@@ -53,7 +52,7 @@ $(document).ready(function () {
     let p =  $('<p>');
     let footer = $('<footer>');
     let span =$('<span>').addClass('icons');
-  
+
     //appends the properties to the tweet tags
     tweet.append(header)
     header.append(avatar)
@@ -98,7 +97,6 @@ $(document).ready(function () {
       $("textarea").focus();
       console.log($("textarea").val());
     });
-   
   })
 
   let $form = $('#newTweetForm');
