@@ -34,17 +34,17 @@
   <body>
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
-      <div>
+      <div id=logoAndHeader>
         <img class="logo" src="/images/bird.png" />
         <span class="header">Tweeter</span>
       </div>
-      <button class="compose">Compose</button>
+      <button id="compose">Compose</button>
     </nav>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
+    <main id="container">
       <!-- Compose a new tweet section-->
-      <section class="new-tweet">
+      <section id="new-tweet">
         <h2>Compose Tweet</h2>
         <form id="newTweetForm" action="/tweets" method="POST">
           <textarea
@@ -52,13 +52,13 @@
             placeholder="What are you humming about?"
           ></textarea>
           <input type="submit" value="Tweet" />
-          <span class="counter">140</span>
+          <span id="counter">140</span>
           <p class="error"></p>
         </form>
       </section>
 
       <!-- Previous tweets section -->
-      <section id="all-tweets"></section>
+      <section id="allTweets"></section>
     </main>
   </body>
 </html>

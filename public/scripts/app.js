@@ -63,7 +63,7 @@ $(document).ready(function () {
     h6.append(handle);
     tweet.append(div);
     div.append(p);
-    p.append($("<p></p>").text(content)); // prevents XSS with escaping
+    p.append($("<p class='content'></p>").text(content)); // prevents XSS with escaping
     tweet.append(footer);
     footer.append(time);
     footer.append(span);
@@ -77,7 +77,7 @@ $(document).ready(function () {
   function renderTweets(tweets) {
     for ( const tweet of tweets) {
       let newTweet = createTweetElement(tweet);
-      $("#all-tweets").prepend(newTweet);
+      $("#allTweets").prepend(newTweet);
     }
   }
 
@@ -91,10 +91,10 @@ $(document).ready(function () {
     });
   }
 
-  let $button = $(".compose");
+  let $button = $("#compose");
   $button.click(function(event) {
     event.preventDefault();
-    $(".new-tweet").slideToggle('fast', function() {
+    $("#newTweet").slideToggle('fast', function() {
       $("textarea").focus();
       console.log($("textarea").val());
     });
@@ -120,7 +120,7 @@ $(document).ready(function () {
       .done(function (res) {
         renderTweets([res]);
         $("textarea").val('');
-        $(".counter").text(140);
+        $("#counter").text(140);
       });
     }
   })
