@@ -6,9 +6,9 @@ This app's front-end is built using HTML, CSS, JS, JQuery and AJAX. Whereas the 
 
 ## screenshots
 
-!["Screenshot of tweet compose box"]()
-!["Screenshot of previous tweets section"]()
-!["Screenshot of nav-bar"]()
+!["Screenshot of tweet compose box"](https://github.com/BanaBatshon/tweeter/blob/master/public/images/Docs/Screen%20Shot%202019-03-24%20at%206.04.23%20PM.png)
+!["Screenshot of previous tweets section"](https://github.com/BanaBatshon/tweeter/blob/master/public/images/Docs/Screen%20Shot%202019-03-24%20at%206.04.11%20PM.png)
+!["Screenshot of nav-bar"](https://github.com/BanaBatshon/tweeter/blob/master/public/images/Docs/Screen%20Shot%202019-03-24%20at%206.03.37%20PM.png)
 
 ## Getting Started
 
