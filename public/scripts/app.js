@@ -1,42 +1,15 @@
 $(document).ready(function () {
   $(".error").hide();
   loadTweets();
-  // $('.new-tweet').hide();
-    
+
   function createTweetElement(tweetObj) {
-    // checks what time to post to the webpage
-    let findTime = function () {
-      let time = "";
-      if (years === 1) {
-        return time += "posted: " + years + " year ago"
-      } else if (years > 0) {
-        return time += "posted over a year ago"
-      } else if (months === 1) {
-        return time += "posted: " + months + " month ago"
-      } else if (months > 0) {
-        return time += "posted: " + months + " months ago"
-      } else if (days === 1) {
-        return time += "posted: " + days + " day ago"
-      } else if (days > 0) {
-        return time += "posted: " + days + " days ago"
-      } else if (hours === 0) {
-        return time += "Just posted";
-      }
-      return time += "posted: " + hours + " hours ago"
-    }
-    
     //gets the tweet properties from the passed object
     let avatar = $('<img>').attr('src',tweetObj["user"]["avatars"]["small"]);
     let name = tweetObj["user"]["name"];
     let handle = tweetObj["user"]["handle"];
     let content = tweetObj["content"]["text"];
-    let postDate = new Date((tweetObj["created_at"]));
-    let currentDate = new Date();
-    let years = currentDate.getFullYear() - postDate.getFullYear();
-    let months = (currentDate.getMonth() + 1) - (postDate.getMonth() + 1);
-    let days = currentDate.getDate() - postDate.getDate()
-    let hours = (currentDate.getHours()) + (24 - postDate.getHours());
-    let time = findTime();
+    let postTime = tweetObj["created_at"];
+    let time = moment(postTime).fromNow();
     let firstIcon = $('<i id="heart" class="fas fa-heart"></i>');
     let secondIcon = $('<i id="retweet" class="fas fa-retweet"></i>');
     let thirdIcon = $('<i id="flag" class="fab fa-font-awesome-flag"></i>');
@@ -95,7 +68,7 @@ $(document).ready(function () {
     event.preventDefault();
     $("#newTweet").slideToggle('fast', function() {
       $("textarea").focus();
-      console.log($("textarea").val());
+      // console.log($("textarea").val());
     });
   })
 
