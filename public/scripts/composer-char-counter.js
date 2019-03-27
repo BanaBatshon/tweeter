@@ -3,12 +3,15 @@ $(document).ready(function() {
     $("textArea").on('keyup', function() {
       let length = $(this).val().length;
       let counter = maxLength - length;
-      $(".counter").html(counter);
+      $("#counter").html(counter);
       if (counter < 0) {
-        $(".counter").css('color', 'red');
+        $("#counter").css('color', 'red');
       } 
       else if (counter === 0) {
-        $(".counter").css('color', 'orange');
+        $("#counter").css('color', 'orange');
+      }
+      else {
+        $("#counter").css('color', 'white');
       }
   })
 });

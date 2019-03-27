@@ -107,6 +107,10 @@ body {
   justify-content: space-between;
   padding: 10px;
 }
+.tweet img {
+  border: 0.2px solid black;
+  border-radius: 10px;
+}
 .tweet footer {
   display: flex;
   justify-content: space-between;

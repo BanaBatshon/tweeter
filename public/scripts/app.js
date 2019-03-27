@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $("#newTweet").hide()
   $(".error").hide();
   loadTweets();
 
@@ -81,7 +82,7 @@ $(document).ready(function () {
         $(".error").slideDown('fast');
     // Checks if the user exceeds the 140 character limit
     } else if ($("textArea").val().length > 140 ) {
-      $(".error").text('Error: You have exceeded the charachter limit!');
+      $(".error").text('Error: You have exceeded the character limit!');
       $(".error").slideDown('fast');
     // loads the tweets and resets the counter after submission
     } else {
